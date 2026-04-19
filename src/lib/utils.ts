@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatProgress(season?: number, episode: number): string {
+export function formatProgress(season: number | null | undefined, episode: number): string {
   if (season) {
     return `S${season}E${String(episode).padStart(2, "0")}`;
   }
