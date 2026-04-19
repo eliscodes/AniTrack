@@ -71,7 +71,7 @@ npm install
 
 # Setup environment variables
 cp .env.example .env.local
-# Edit .env.local and add your Clerk keys & DB URL
+# Edit .env.local and add your DB URL
 ```
 
 ### Database Setup
@@ -80,7 +80,7 @@ You need a PostgreSQL database. The easiest way is to use **Supabase** (free, ma
 
 1. Go to [supabase.com](https://supabase.com)
 2. Create new project (takes ~2 minutes)
-3. Copy Connection String to `.env.local` as `DATABASE_URL`
+3. Copy Connection String to `.env.local` and `.env` as `DATABASE_URL`
 
 See [SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md) for full instructions.
 
@@ -174,7 +174,7 @@ npm run prisma db push -- --force-reset
 
 ## 📝 License
 
-MIT © 2025 AniTrack
+MIT © 2026 AniTrack
 
 ---
 
