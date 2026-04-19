@@ -12,12 +12,12 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = "font-medium rounded transition-all duration-200 focus:outline-none disabled:opacity-50";
+  const baseStyles = "font-medium rounded transition-all duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-neutral-800 text-neutral-100 border border-neutral-700 hover:bg-neutral-700",
-    danger: "bg-red-600 text-white hover:bg-red-700",
+    primary: "bg-blue-600 text-white hover:bg-blue-700 active:scale-95 disabled:hover:bg-blue-600",
+    secondary: "bg-neutral-800 text-neutral-100 border border-neutral-700 hover:bg-neutral-700 disabled:hover:bg-neutral-800",
+    danger: "bg-red-600 text-white hover:bg-red-700 active:scale-95 disabled:hover:bg-red-600",
   };
 
   const sizes = {
@@ -35,3 +35,4 @@ export function Button({
     </button>
   );
 }
+
