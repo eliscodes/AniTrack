@@ -6,10 +6,10 @@ export default function Home() {
           AniTrack
         </h1>
         <p className="text-xl text-neutral-400">
-          Beautiful anime progress tracking coming soon...
+          Your anime progress tracker is loading...
         </p>
         <div className="pt-12 text-sm text-neutral-500">
-          Setting up your database and authentication...
+          Powered by Supabase & Vercel
         </div>
       </div>
     </main>
