@@ -2,7 +2,8 @@
 
 A beautiful, minimalist fullstack web application for tracking your anime watching progress. Built with cutting-edge tech for maximum performance and UX.
 
-**🚀 Live Demo:** Coming soon on Vercel  
+**🚀 Live Demo:** Coming soon on anitrack.watchlist  
+**💻 GitHub:** https://github.com/eliscodes/AniTrack  
 **⭐ Data Persistence:** All your data is securely stored in the cloud, synced across devices  
 **📱 Mobile First:** Optimized for smartphones, works as a PWA
 
