@@ -7,8 +7,8 @@ import { validateTitle, validateEpisode } from "@/lib/utils";
  */
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Add Clerk auth check
-    const userId = "temp-user-id"; // Placeholder until Clerk is integrated
+    // Using fixed userId for now - authentication can be added later via Supabase Auth
+    const userId = "temp-user-id";
 
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("q") || "";
@@ -59,8 +59,8 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    // TODO: Add Clerk auth check
-    const userId = "temp-user-id"; // Placeholder until Clerk is integrated
+    // Using fixed userId for now - authentication can be added later via Supabase Auth
+    const userId = "temp-user-id";
 
     const body = await request.json();
     const { title, currentSeason, currentEpisode, notes, coverUrl } = body;

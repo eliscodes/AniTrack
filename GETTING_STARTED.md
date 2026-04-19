@@ -1,15 +1,18 @@
 # 🚀 Getting Started with AniTrack
 
-Welcome to AniTrack! This guide will get you up and running in 10 minutes.
+Welcome! This guide will get your AniTrack app running in 5 minutes.
+
+---
 
 ## 📋 Prerequisites
 
-- Node.js 18+ ([Download](https://nodejs.org))
-- Git ([Download](https://git-scm.com))
-- A free [Supabase](https://supabase.com) account (PostgreSQL database)
-- A free [Clerk](https://clerk.com) account (authentication)
+- **Node.js 18+** ([Download](https://nodejs.org))
+- **Git** ([Download](https://git-scm.com))
+- **Supabase account** (free at [supabase.com](https://supabase.com))
 
-## ⚡ Quick Start
+---
+
+## ⚡ Quick Start (Supabase + Local Development)
 
 ### 1. Clone the Repository
 
@@ -21,127 +24,115 @@ cd AniTrack
 ### 2. Install Dependencies
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
-### 3. Create `.env.local` File
+### 3. Setup Supabase Database
+
+1. Go to [supabase.com](https://supabase.com) and sign up (free)
+2. Create a new project:
+   - **Name:** `anitrack`
+   - **Password:** Save it securely
+   - **Region:** Select one closest to you
+3. Wait for project to initialize (~2 minutes)
+4. Go to **Settings** → **Database** → **Connection Pooling**
+5. Copy the connection string (starts with `postgresql://`)
+
+### 4. Create `.env.local`
 
 ```bash
 cp .env.example .env.local
 ```
 
-Edit `.env.local` and add your credentials:
+Edit `.env.local` and paste your Supabase connection string:
 
 ```env
-DATABASE_URL=postgresql://[user]:[password]@[host]:5432/[database]
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@[PROJECT-ID].supabase.co:6543/postgres?schema=public
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-### 4. Setup Database
+### 5. Initialize Database Schema
 
 ```bash
 npm run db:generate
 npm run db:push
 ```
 
-### 5. Start Development Server
+This creates all tables in your Supabase database automatically.
+
+### 6. Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Visit http://localhost:3000 🎉
+Visit **http://localhost:3000** 🎉
 
 ---
 
-## 📚 Full Documentation
+## ✅ That's It!
 
-- **[README.md](./README.md)** - Project overview and features
-- **[QUICKSTART.md](./QUICKSTART.md)** - Detailed setup guide (German)
-- **[DEPLOYMENT.md](./DEPLOYMENT.md)** - Deploy to Vercel with custom domain
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Project structure and conventions
+Your app is now running locally with a cloud database. You can:
 
----
-
-## 🌍 Deployment
-
-Deploy to **Vercel** + **Supabase** in 5 minutes:
-
-1. Push to GitHub (already done!)
-2. Go to [vercel.com](https://vercel.com)
-3. Import this repository
-4. Add environment variables
-5. Deploy! 🚀
-
-Your app will run on `anitrack.watchlist` (or your custom domain)
+- ✅ Create, read, update, delete anime
+- ✅ Track episode progress
+- ✅ Mark favorites
+- ✅ Search and filter
+- ✅ All data synced to Supabase cloud
 
 ---
 
-## 💡 Tech Stack
+## 🚀 Next: Deploy to Production
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | Next.js 15 + React 18 + TypeScript |
-| Styling | TailwindCSS + Dark Mode |
-| Backend | Next.js API Routes |
-| Database | PostgreSQL (Supabase) + Prisma |
-| Auth | Clerk (not yet integrated) |
+When ready, deploy to Vercel for free:
 
----
-
-## 🎯 Current Features
-
-✅ Anime CRUD operations  
-✅ Episode tracking (season + episode)  
-✅ Favorite marking  
-✅ Search functionality  
-✅ Responsive dashboard  
-✅ Dark mode default  
-✅ Statistics & progress tracking  
-
----
-
-## 📝 Next Steps
-
-- Integrate Clerk authentication
-- Add Framer Motion animations
-- Add import/export functionality
-- Add MyAnimeList API suggestions
-- Deploy to production!
+See **[SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md)** for step-by-step instructions.
 
 ---
 
 ## 🐛 Troubleshooting
 
-**"npm install fails"**
+### "npm install fails"
 ```bash
-npm install --legacy-peer-deps --force
+npm install --force
 ```
 
-**"DATABASE_URL is invalid"**
-- Check your Supabase connection string format
-- Test with: `psql $DATABASE_URL -c "SELECT version();"`
+### "DATABASE_URL is invalid"
+- Check the connection string format starts with `postgresql://`
+- Verify your Supabase password doesn't have special characters (or is URL-encoded)
+- Test: `npm run db:generate`
 
-**"Prisma error"**
+### "Prisma error during db:push"
 ```bash
-npm run db:generate  # Regenerate Prisma client
-npm run db:push      # Sync schema with DB
+# Regenerate Prisma client
+npm run db:generate
+
+# Then try again
+npm run db:push
 ```
+
+### "localhost:3000 shows blank page"
+- Check console for errors (F12)
+- Verify DATABASE_URL is set correctly
+- Restart dev server: `npm run dev`
 
 ---
 
-## 🤝 Contributing
+## 📚 Full Documentation
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+- **[README.md](./README.md)** - Project overview
+- **[SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md)** - Deploy to production
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - Code structure
 
 ---
 
-## 📞 Support
+## 💡 Tech Stack
 
-- 📖 Read the docs in the project root
-- 🐛 Create an issue on GitHub
-- 💬 Check existing discussions
+- **Frontend:** Next.js 15 + React 18 + TypeScript
+- **Styling:** TailwindCSS (dark mode)
+- **Backend:** Next.js API Routes
+- **Database:** PostgreSQL (Supabase) + Prisma
+- **Hosting:** Vercel (when ready to deploy)
 
 ---
 

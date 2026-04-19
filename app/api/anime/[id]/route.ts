@@ -10,7 +10,8 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = "temp-user-id"; // Placeholder until Clerk is integrated
+    // Using fixed userId for now - authentication can be added later via Supabase Auth
+    const userId = "temp-user-id";
     const { id } = await params;
 
     const anime = await prisma.anime.findFirst({
@@ -42,7 +43,8 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = "temp-user-id"; // Placeholder until Clerk is integrated
+    // Using fixed userId for now - authentication can be added later via Supabase Auth
+    const userId = "temp-user-id";
     const { id } = await params;
 
     // Check ownership
@@ -105,7 +107,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const userId = "temp-user-id"; // Placeholder until Clerk is integrated
+    // Using fixed userId for now - authentication can be added later via Supabase Auth
+    const userId = "temp-user-id";
     const { id } = await params;
 
     // Check ownership

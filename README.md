@@ -47,10 +47,8 @@ A beautiful, minimalist fullstack web application for tracking your anime watchi
 |-------|-----------|
 | **Frontend** | Next.js 15, React 18, TypeScript |
 | **Styling** | TailwindCSS 4, Framer Motion |
-| **State** | Zustand, TanStack Query |
 | **Backend** | Next.js API Routes |
 | **Database** | PostgreSQL + Prisma ORM |
-| **Auth** | Clerk |
 | **Hosting** | Vercel (Frontend + Backend), Supabase (Database) |
 
 ---
@@ -78,35 +76,13 @@ cp .env.example .env.local
 
 ### Database Setup
 
-You need a PostgreSQL database. Here are two options:
+You need a PostgreSQL database. The easiest way is to use **Supabase** (free, managed):
 
-**Option A: Supabase (Recommended - Free & Easy)**
 1. Go to [supabase.com](https://supabase.com)
-2. Create new project
+2. Create new project (takes ~2 minutes)
 3. Copy Connection String to `.env.local` as `DATABASE_URL`
 
-**Option B: Local PostgreSQL**
-```bash
-# On macOS
-brew install postgresql
-brew services start postgresql
-
-# Create database
-createdb anitrack_db
-
-# Set DATABASE_URL in .env.local
-DATABASE_URL="postgresql://postgres:password@localhost:5432/anitrack_db"
-```
-
-### Clerk Authentication Setup
-
-1. Go to [clerk.com](https://clerk.com)
-2. Create app → copy publishable & secret keys
-3. Add to `.env.local`:
-```
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
-CLERK_SECRET_KEY=your_key
-```
+See [SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md) for full instructions.
 
 ### Run Development Server
 
@@ -120,6 +96,8 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+For production deployment, see [SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md).
 
 ---
 

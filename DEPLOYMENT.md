@@ -1,140 +1,152 @@
 # 🚀 Deployment Guide - AniTrack
 
-Dieses Projekt kann mit **Vercel** (kostenloses Hosting) + **Supabase** (kostenloses PostgreSQL) deployed werden.
+Deploy your AniTrack app to **Vercel** (hosting) + **Supabase** (database) for free in 10 minutes.
 
-## 🎯 Schnell-Start (5-10 Minuten)
+---
 
-### 1️⃣ Supabase Database Setup
+## 🎯 Quick Start (5-10 Minutes)
 
-1. Gehe zu https://supabase.com und registriere dich (kostenlos)
-2. Erstelle neues Project
-3. Warte bis Projekt ready ist
-4. Gehe zu **Settings → Database → Connection Strings**
-5. Kopiere **Connection String** (URI)
-6. Ersetze `[YOUR-PASSWORD]` mit deinem Passwort
+### Step 1: Create Supabase Database
 
-### 2️⃣ Clerk Authentication Setup
+1. Go to [supabase.com](https://supabase.com)
+2. Sign up or log in
+3. Create new project:
+   - **Name:** `anitrack`
+   - **Password:** Save securely
+   - **Region:** Choose closest to you
+4. Wait for project to initialize (~2 minutes)
+5. Go to **Settings** → **Database** → **Connection Pooling**
+6. Copy the connection string
 
-1. Gehe zu https://clerk.com und registriere dich (kostenlos)
-2. Erstelle neue App
-3. Wähle Sign-in Methods (Google, GitHub empfohlen)
-4. Gehe zu **API Keys**
-5. Kopiere:
-   - `NEXT_PUBLIC_PUBLISHABLE_KEY`
-   - `CLERK_SECRET_KEY`
-
-### 3️⃣ Environment Variablen konfigurieren
-
-Lokal testen:
+### Step 2: Setup Local Environment
 
 ```bash
-# .env.local
-DATABASE_URL=postgresql://postgres:[password]@[host]:5432/[database]
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
+# Clone repo
+git clone https://github.com/eliscodes/AniTrack.git
+cd AniTrack
+
+# Install dependencies
+npm install
+
+# Create .env.local
+cp .env.example .env.local
 ```
 
-### 4️⃣ Datenbank Setup
+Edit `.env.local`:
+```env
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@[PROJECT-ID].supabase.co:6543/postgres?schema=public
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+### Step 3: Initialize Database
 
 ```bash
-npm install
 npm run db:generate
 npm run db:push
 npm run dev
 ```
 
-Öffne http://localhost:3000
+Visit http://localhost:3000 to verify everything works ✅
 
-### 5️⃣ GitHub Repository
+### Step 4: Push to GitHub
 
-GitHub ist bereits konfiguriert:
-- Repository: https://github.com/eliscodes/AniTrack
-- Alle Commits sind bereits gepusht ✅
+If not already done:
+```bash
+git add .
+git commit -m "chore: configure supabase"
+git push origin main
+```
 
-### 6️⃣ Vercel Deployment
+### Step 5: Deploy to Vercel
 
-1. Gehe zu https://vercel.com und melde dich an
-2. Klicke **Add New → Project**
-3. Wähle "Import an Existing Project"
-4. Verbinde dein GitHub Account
-5. Wähle `eliscodes/AniTrack` Repository
-6. Unter **Environment Variables** hinzufügen:
+1. Go to [vercel.com](https://vercel.com)
+2. Click **Add New** → **Project**
+3. Select **Import Git Repository**
+4. Choose your **AniTrack** repository
+5. Under **Environment Variables**, add:
    ```
-   DATABASE_URL = [deine-supabase-url]
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = [dein-clerk-key]
-   CLERK_SECRET_KEY = [dein-clerk-secret]
+   DATABASE_URL = postgresql://postgres:[YOUR-PASSWORD]@[PROJECT-ID].supabase.co:6543/postgres?schema=public
    ```
-7. Klicke **Deploy**
-8. App wird deployed! 🚀
+6. Click **Deploy** 🚀
 
-### 7️⃣ Custom Domain konfigurieren
+Wait 2-3 minutes for deployment to complete.
 
-Nach erfolgreichem Vercel Deployment:
+### Step 6: Verify Live App
 
-1. Gehe zu **Vercel Project Settings**
-2. Klicke **Domains**
-3. Wähle eine Option:
-
-**Option A: `anitrack.watchlist` (empfohlen)**
-- Domain eingeben: `anitrack.watchlist`
-- Vercel gibt dir DNS-Records
-- Setze Records bei deinem Domain-Provider
-- Fertig! App läuft unter `anitrack.watchlist`
-
-**Option B: `anitrack.` (falls TLD verfügbar)**
-- Alternativ: `anitrack.` mit eigener TLD
-- Gleicher Prozess wie oben
+1. Once deployed, click **Visit**
+2. Create a new anime entry
+3. Refresh the page - your data persists ✅
 
 ---
 
-## ✅ Checklist vor Deployment
+## 🌐 Setup Custom Domain (Optional)
 
-- [ ] Supabase Projekt erstellt
-- [ ] Clerk App erstellt
-- [ ] Environment Variablen gesetzt
-- [ ] `npm run db:push` erfolgreich
-- [ ] Lokale App läuft (`npm run dev`)
-- [ ] Code zu GitHub gepusht
-- [ ] Vercel Deployment erfolgreich
+Your app will be at: `https://anitrack-[random].vercel.app`
+
+To use `anitrack.watchlist`:
+
+1. In Vercel project settings, go to **Domains**
+2. Click **Add Domain**
+3. Enter `anitrack.watchlist`
+4. Add DNS records to your registrar
+5. Wait 5-10 minutes for DNS to propagate
+
+---
+
+## ✅ Deployment Checklist
+
+- [ ] Supabase project created
+- [ ] Database connection string copied
+- [ ] Local .env.local configured
+- [ ] Database schema initialized (`npm run db:push`)
+- [ ] Local app runs (`npm run dev`)
+- [ ] Code pushed to GitHub
+- [ ] Vercel deployment successful
+- [ ] Live app verified
+- [ ] (Optional) Custom domain configured
 
 ---
 
 ## 🐛 Troubleshooting
 
-### "DATABASE_URL is invalid"
+### Deployment fails with "DATABASE_URL not set"
+- Check Environment Variables in Vercel settings
+- Make sure the value is copied correctly (full string)
+- Redeploy from Vercel dashboard
+
+### Database connection fails
+- Verify Supabase project is active
+- Check Supabase connection string is correct
+- Test locally first before deploying
+
+### Custom domain not working
+- Wait 10-15 minutes for DNS propagation
+- Check DNS records were added correctly
+- Clear browser cache (Ctrl+Shift+Delete)
+
+---
+
+## 🔄 Continuous Deployment
+
+After initial setup, any push to `main` automatically deploys:
+
 ```bash
-# Überprüfe Supabase Connection String
-# Format: postgresql://[user]:[password]@[host]:[port]/[database]
+# Make changes locally
+git add .
+git commit -m "feat: add feature"
+git push origin main
+
+# Vercel automatically deploys! 🚀
 ```
 
-### "Clerk API Keys ungültig"
-- Überprüfe API Keys in Clerk Dashboard
-- Stelle sicher, dass Keys für richtige Umgebung sind
+---
 
-### "Prisma Migration fehlgeschlagen"
-```bash
-npm run prisma db push -- --force-reset  # ⚠️ WARNUNG: Löscht Daten!
-```
+## 📚 See Also
+
+- [GETTING_STARTED.md](./GETTING_STARTED.md) - Local setup guide
+- [SUPABASE_DEPLOYMENT.md](./SUPABASE_DEPLOYMENT.md) - Detailed Supabase guide
+- [ARCHITECTURE.md](./ARCHITECTURE.md) - Project structure
 
 ---
 
-## 🔒 Production Best Practices
-
-- [ ] Nutze Production Clerk Keys (nicht Test Keys)
-- [ ] Database Backup aktivieren (Supabase Auto-Backups: kostenlos ✅)
-- [ ] Monitor Error Logs (Vercel Analytics)
-- [ ] Regelmäßig Dependencies updaten
-
----
-
-## 📋 Domain-Verwaltung
-
-Wenn du `anitrack.watchlist` registrierst:
-- Registrar: z.B. Namecheap, GoDaddy, Google Domains
-- Vercel gibt dir automatisch die DNS-Records
-- Setze diese im Registrar-Dashboard
-- Nach 24-48h live ✅
-
----
-
-Fragen? Erstelle ein Issue auf GitHub!
+**🎉 Your app is now live in the cloud!**
